@@ -40,8 +40,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //------------------------------------------------------------------------
 #include "cuda_profiler_api.h"
 #include <unistd.h>
-#include "gsl/gsl_math.h"
-#include "gsl/gsl_rng.h"
+//#include <gsl/gsl_math.h>
+//#include <gsl/gsl_rng.h>
 //#include <complex.h>
 //------------------------------------------------------------------------
 int main(int argc, char **argv)
@@ -624,21 +624,29 @@ int main(int argc, char **argv)
 		}
 		#endif
 		//------------------------------------------------------------------------
-		// Introducing noise in the composition variable
+		// Introducing noise in the composition variable (thermal fluctuations)
 
 		// GSL Tausworthe random number generator.
-		gsl_rng * ran_num;
+		/*
+        gsl_rng * ran_num;
 		const gsl_rng_type * Taus;
 		Taus = gsl_rng_taus2;
 		ran_num = gsl_rng_alloc(Taus);
 		gsl_rng_set(ran_num,seed_val);
+        */
+
+        // simple random number generator from 0 to 1 (inclusive)
+        //
+        srand(seed_val);
+
+
 		for (i1 = 0; i1 < Nx; ++i1)
 		{
 			for (i2 = 0; i2 < Ny; ++i2)
 			{
 				for (i3 = 0; i3 < Nz; ++i3)
 				{
-					c_host[i3 + Nx*(i2+Ny*i1)] += c_noise*(0.5 - gsl_rng_uniform_pos(ran_num));
+					c_host[i3 + Nx*(i2+Ny*i1)] += c_noise*(0.5 - ((double)rand()/(double)RAND_MAX)/*gsl_rng_uniform_pos(ran_num)*/);
 				}
 
 			}
