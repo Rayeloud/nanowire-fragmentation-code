@@ -62,7 +62,7 @@ int main(int argc, char **argv)
 	// Saving the start time of the simulation run
 	begin_t = time(NULL);
 	//------------------------------------------------------------------------
-	fw = fopen("logfile.txt","a");
+	fw = fopen("logfile.log","a");
 	fprintf(fw, "---------------------------------------------------------------\n");
 	time(&t);
 	fprintf(fw, "Simulation date and time: %s\n", ctime(&t));
@@ -267,7 +267,7 @@ int main(int argc, char **argv)
 		//------------------------------------------------------------------------
 		double R1, R2;
 		double c_zero, c_noise;
-		fw = fopen("logfile.txt","a");
+		fw = fopen("logfile.log","a");
 		if ((fr = fopen("./inputs/comp_data.txt","r")) == NULL)
 		{
 			printf("Unable to open the comp_data input file. Exiting!\n");
@@ -823,7 +823,7 @@ int main(int argc, char **argv)
 	end_t = time(NULL);
 	time_elapsed = (double) (end_t - begin_t);
 	printf("\nThe total simulation wall-time elapsed = %.4f seconds\n", time_elapsed);
-	fw = fopen("logfile.txt","a");
+	fw = fopen("logfile.log","a");
 	fprintf(fw, "The total simulation wall-time elapsed = %.4f seconds\n", time_elapsed);
 	(void) fclose(fw);
 	return 0;

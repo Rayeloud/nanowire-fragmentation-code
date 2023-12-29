@@ -1,0 +1,26 @@
+# gitignore for the project
+# ignore data files, compiled files, etc.
+
+# ignore output files
+*.dat
+*.vtk
+
+# ignore compiled files
+*.o
+*.so
+*.a
+*.exe
+
+# ignore backup files
+*~
+*.bak
+*.swp
+*.pyc
+*.pyo
+
+# ignore archive files
+*.zip
+*.tar.gz
+
+# ignore log files
+*.log
