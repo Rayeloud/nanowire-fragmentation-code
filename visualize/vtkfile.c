@@ -47,9 +47,17 @@ int main(int argc, char** argv)
 	int temp = 0;
 
 	// To be determined from the simulation data.
-	Nx = 96;
-	Ny = 768;
-	Nz = 768;
+    if ((fp = fopen("../inputs/system_data.txt", "r")) == NULL)
+    {
+        printf("Unable to open the system data input file. Exiting!\n");
+    }
+    else
+    {
+        fp = fopen("../inputs/system_data.txt", "r");
+    }
+    (void) fscanf(fp, "%d%d%d", &Nx, &Ny, &Nz);
+    (void) fclose(fp);
+
 	//--------------------------------------------------------------------//
 	// Conversion loop begins.
 
